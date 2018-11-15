@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../algorithm-base/algorithm-base.iml" filepath="$PROJECT_DIR$/../algorithm-base/algorithm-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/featureEngine.iml" filepath="$PROJECT_DIR$/featureEngine.iml" />
+    </modules>
+  </component>
+</project>
