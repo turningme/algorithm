@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../algorithm-base/algorithm-base.iml" filepath="$PROJECT_DIR$/../algorithm-base/algorithm-base.iml" />
-      <module fileurl="file://$PROJECT_DIR$/featureEngine.iml" filepath="$PROJECT_DIR$/featureEngine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/algorithm-base.iml" filepath="$PROJECT_DIR$/algorithm-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tool-algorithm.iml" filepath="$PROJECT_DIR$/tool-algorithm.iml" />
     </modules>
   </component>
 </project>

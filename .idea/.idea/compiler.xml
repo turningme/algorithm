@@ -20,7 +20,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="algorithm-base" target="1.5" />
-      <module name="featureEngine" target="1.5" />
+      <module name="tool-algorithm" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
