@@ -16,7 +16,7 @@ import java.util.Comparator;
  *
  *
  * after bi-search ,we locate the key in the array , name it position.
- * the search from positon in array  two directions until find the bounds and count all elements
+ * the search from position in array  two directions until find the bounds and count all elements
  *
  */
 public class N37SortArraySearchCount implements Execution{
