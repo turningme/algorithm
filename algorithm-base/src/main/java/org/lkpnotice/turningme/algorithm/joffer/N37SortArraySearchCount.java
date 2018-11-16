@@ -6,6 +6,18 @@ import java.util.Comparator;
 
 /**
  * Created by liujinpeng on 2018/11/15.
+ * the focus is bi-search alg.
+ * use while ,not recursive function to resolve
+ * init :start = 0; end = length-1
+ * while condition end >=start to include all kinds of condition
+ * there are three kinds of normal situations , 1. start = end 2.start +  1 =end 3. end -start >1
+ * 3 situation could deduce to 1 and 2 .
+ * for 1 and 2 we handle them specially in while loop to just utilize if judgement..
+ *
+ *
+ * after bi-search ,we locate the key in the array , name it position.
+ * the search from positon in array  two directions until find the bounds and count all elements
+ *
  */
 public class N37SortArraySearchCount implements Execution{
 
