@@ -22,6 +22,7 @@ import java.util.Comparator;
  *
  * Note! explanation is not optimal , bi-part search has more solutions and situations indeed.. Particularly while the elements could be repetitive
  *
+ * others think is :1 k-0.5 k+0.5 2. bi-part search with recursive
  *
  *
  */
