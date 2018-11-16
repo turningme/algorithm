@@ -18,6 +18,12 @@ import java.util.Comparator;
  * after bi-search ,we locate the key in the array , name it position.
  * the search from position in array  two directions until find the bounds and count all elements
  *
+ *
+ *
+ * Note! explanation is not optimal , bi-part search has more solutions and situations indeed.. Particularly while the elements could be repetitive
+ *
+ *
+ *
  */
 public class N37SortArraySearchCount implements Execution{
 
@@ -105,6 +111,9 @@ public class N37SortArraySearchCount implements Execution{
 
         return result;
     }
+
+
+
 
 
     /**
