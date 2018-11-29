@@ -1,5 +1,5 @@
 # algorithm
-
+# we all need well done basic algorithm training ,basic alg is a training ,that is all right
 
 joffer/No51  序列和 序列积的变种， 同时状态变换与空间利用 特性是空间连续性 从求解要求能分析出来  结果数据的相邻数据间存在某种联系  可以利用 另外在jianzhioffer 中描述的矩阵分析法本质是一样的
 
