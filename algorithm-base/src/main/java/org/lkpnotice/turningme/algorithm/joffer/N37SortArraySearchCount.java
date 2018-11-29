@@ -6,6 +6,11 @@ import java.util.Comparator;
 
 /**
  * Created by liujinpeng on 2018/11/15.
+ *
+ *
+ *
+ *
+ * resolution:
  * the focus is bi-search alg.
  * use while ,not recursive function to resolve
  * init :start = 0; end = length-1
