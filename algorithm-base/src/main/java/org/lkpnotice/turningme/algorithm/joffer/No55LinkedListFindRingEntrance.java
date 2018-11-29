@@ -26,8 +26,10 @@ import java.util.Set;
  *  slowNode fastNode  O(2) external space to use
  *
  *
+ * solution_c:
+ *  optimized solution_b, without the collision node detect ?????
  */
-public class No55FindRingEntranceOfLinkedList implements Execution{
+public class No55LinkedListFindRingEntrance implements Execution{
 
 
     public void execute() {
@@ -139,7 +141,7 @@ public class No55FindRingEntranceOfLinkedList implements Execution{
 
 
     public static void main(String[] args){
-        new No55FindRingEntranceOfLinkedList().execute();
+        new No55LinkedListFindRingEntrance().execute();
     }
 
 
