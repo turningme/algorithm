@@ -13,12 +13,21 @@ import static org.lkpnotice.turningme.algorithm.util.PrintUtil.print;
  * B[i] = A[0]* ...*A[i-1]*A[i+1]*...*A[n]
  * div operate is not allowed
  *
- * resolution:
+ * resolution a:
  * A == null ; return null
  * A.size = 0; return null
  * A.size = 1; return null
  * A.size > 1  resulotion_a
  *
+ * comments: time complexity is expensive
+ *
+ * resolution b:  take full advantage of the characteristics, sequence , break point,  sequential sum or multiply as the sub-problem
+ * B[i] = A[0]* ...*A[i-1]*A[i+1]*...*A[n]
+ *      = (A[0]* ...*A[i-1])      *      (A[i+1]*...*A[n])
+ *
+ * B[i]_1 = (A[0]* ...*A[i-1])
+ * B[i]_2 = (A[i+1]*...*A[n])
+ * B[i] = B[i]_1  *  B[i]_2
  */
 public class No51ArrayA2ArrayBConstruct implements Execution{
 
@@ -28,7 +37,7 @@ public class No51ArrayA2ArrayBConstruct implements Execution{
 
     public void execute() {
         Integer[] in = mockArray();
-        Integer[] out = convert(in);
+        Integer[] out = convertV2(in);
         print(out);
     }
 
@@ -68,6 +77,53 @@ public class No51ArrayA2ArrayBConstruct implements Execution{
 
         return result;
 
+    }
+
+    /**
+     *
+     * take full advantage of  sequence , like sequential sum, sequential multiply
+     * train your thinking manner
+     *
+     *  1, 2, 3, 4, 5
+     *
+     *  normal check
+     *
+     *  mul(none),mul(1-1),mul(1,2),nul(1,n-2)
+     *
+     *  reverse check
+     *
+     *  mul(none),multi(n-1,n-1),multi(n-1,n-2) ,multi(n-1,1)
+     *
+     *  multiply them one to the corresponding one ,the same index position
+     *
+     *  mul(non) = 1
+     *
+     * @param input
+     * @return
+     */
+    protected Integer[] convertV2(Integer[] input){
+        if (!checkLegal(input)){
+            return null;
+        }
+        int len = input.length;
+        Integer[] result = new Integer[len];
+
+        /**
+         * two loops
+         */
+
+        result[0] = 1;
+        for (int i=0;i< len-1 ; i++){
+            result[i + 1] = input[i] * result[i];
+        }
+
+        int tmp = 1;
+        for (int k=len-1;k>=0;k--){
+            result[k] = result[k] * tmp;
+            tmp = tmp * input[k];
+        }
+
+        return result;
     }
 
     public static void main(String[] args){
