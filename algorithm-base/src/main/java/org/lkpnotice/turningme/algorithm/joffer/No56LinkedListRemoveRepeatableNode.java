@@ -17,6 +17,10 @@ import java.util.Set;
  * solution-a:
  *  traverse the list with a hashset, cache node if not exists,  if cached remove it ,otherwise cached
  *
+ * solutionn-b: take full advantage of sorted feature ,the decision which node to remove depends on
+ * compare the previous one and current one ,if equal remove current ,else continue
+ *
+ *
  *
  */
 public class No56LinkedListRemoveRepeatableNode implements Execution{
