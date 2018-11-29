@@ -5,8 +5,6 @@ import org.lkpnotice.turningme.algorithm.util.LogUtil;
 import org.lkpnotice.turningme.algorithm.util.Node;
 
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -22,6 +20,10 @@ import java.util.Set;
  *  so use a set to cache nodes traversed , then compare current node with the set to detect existence , until next is null
  *  if a ring exists , we will always find a node that we have cached
  *  but this method need all
+ *  complexity : time O(n) if hash O(1) space O(n)
+ *
+ * solution_b:
+ *  slowNode fastNode  O(2) external space to use
  *
  *
  */
@@ -34,17 +36,17 @@ public class No55FindRingEntranceOfLinkedList implements Execution{
         if (null == result){
             LogUtil.doLog("No ring exists");
         }else {
-            LogUtil.doLog("ring exists");
+            LogUtil.doLog(String.format("ring exists, node: %s", result.toString()));
         }
     }
 
 
     protected  Node constructNoRingLinkedList(){
-        Node n1 = new Node(null);
-        Node n2 = new Node(null);
+        Node n1 = new Node<Integer>(1);
+        Node n2 = new Node<Integer>(2);
 
-        Node n3 = new Node(null);
-        Node n4 = new Node(null);
+        Node n3 = new Node<Integer>(3);
+        Node n4 = new Node<Integer>(4);
 
         n1.setNext(n2);
         n2.setNext(n3);
@@ -55,11 +57,11 @@ public class No55FindRingEntranceOfLinkedList implements Execution{
 
 
     protected  Node constructRingLinkedList(){
-        Node n1 = new Node(null);
-        Node n2 = new Node(null);
+        Node n1 = new Node<Integer>(1);
+        Node n2 = new Node<Integer>(2);
 
-        Node n3 = new Node(null);
-        Node n4 = new Node(null);
+        Node n3 = new Node<Integer>(3);
+        Node n4 = new Node<Integer>(4);
 
         n1.setNext(n2);
         n2.setNext(n3);
@@ -92,6 +94,47 @@ public class No55FindRingEntranceOfLinkedList implements Execution{
         }
 
         return target;
+    }
+
+
+    /**
+     * optimized methods
+     * @param nodeHead
+     * @return
+     */
+    public Node findEntranceOfRingV2(Node<Integer> nodeHead){
+
+        //init check
+        if (nodeHead == null || nodeHead.getNext() == null || nodeHead.getNext().getNext() == null){
+            return null;
+        }
+
+        Node slow = nodeHead.getNext();
+        Node fast = slow.getNext();
+
+        while(slow != fast){
+
+            /**
+             * check next space is not null
+             */
+            if (slow.getNext() == null || fast.getNext() == null || fast.getNext().getNext() == null){
+                return null;
+            }
+
+            slow = slow.getNext();
+            fast = fast.getNext().getNext();
+
+        }
+
+        //detect some cycle if arriving here
+
+        fast = nodeHead;
+        while(fast != slow){
+            fast = fast.getNext();
+            slow = slow.getNext();
+        }
+
+        return slow;
     }
 
 
