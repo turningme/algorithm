@@ -33,10 +33,14 @@ public class common {
         System.out.println(floatAdd(1.333334f,1.223f));
     }
 
+    static void test3(){
+        System.out.println("zz " + (0.0f == 0));
+    }
+
 
 
     public static void main(String[] args) {
-        test2();
+        test3();
     }
 
 }
