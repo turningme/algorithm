@@ -1,26 +1,26 @@
 package org.lkpnotice.turningme.comm.algorithm.other;
 
 /**
- * Created by liujinpeng on 2019/1/22.
+ * Created by liujinpeng on 2019/1/23.
  *
- * Problem : given an array , like the varying trend of stock price [1,3,5,1,2,10],find the buy point and sell point
- * so that array[sell]-array[buy] is maximum.
+ * Problem: given an array [1,2,-1,4,5,-3] ,find the sub-sequence whose sum is the biggest
  *
- * Solution:   complexity  O(1) O(n) O(lgn) O(nlgn) O(n2)
+ * Solution:
+ *  local context global context
+ *  cursor
+ *  if i->j is maximum then 0->i <0
  *
- * we always forget the easiest & detailed thing ,which is vital
+ *  动态规划
+ *  最优子结构
  */
-public class TrendBuyAndSell {
-
-
+public class MaxSumSubSequnce {
     /**
      * construct data
      * @return
      */
     static int[] getInputData(){
-        return new int[]{9,8,-1,-6,-9};
+        return new int[]{-1,-2,3,8,-1,-6,-9,2,3};
     }
-
 
     /**
      * test if the input is ok
@@ -30,6 +30,7 @@ public class TrendBuyAndSell {
     boolean checkLegal(int[] input){
         return  !(null == input || input.length <2);
     }
+
 
     /**
      * solve the problem
@@ -41,10 +42,9 @@ public class TrendBuyAndSell {
             return ;
         }
 
-
         int localStart=0;
         int localEnd = 0;
-        int localGain = 0;
+        int localGain = input[0];
 
         int globalStart = localStart;
         int globalEnd = localEnd;
@@ -52,38 +52,41 @@ public class TrendBuyAndSell {
 
         for (int i = 1 ; i < input.length ; i ++){
             //bottom found, update context-local vars
-            if (input[localStart] > input[i]){
+            if ( localGain <0){
+
+                localStart = localEnd = i;
+                localGain = input[localStart];
+
+            }else {//more gains found
+                localEnd = i;
+                localGain = localGain + input[localEnd];
+
                 if (localGain > globalGain){
                     globalStart = localStart;
                     globalEnd = localEnd;
                     globalGain = localGain;
                 }
-
-                localStart = localEnd = i;
-                localGain = 0;
-
-            }else if (input[i] - input[localStart] > localGain){//more gains found
-                localEnd = i;
-                localGain = input[localEnd] - input[localStart];
             }
 
         }
 
-        //test if local context preferred
+
         if (localGain > globalGain){
             globalStart = localStart;
             globalEnd = localEnd;
             globalGain = localGain;
         }
 
-
-        System.out.println(globalGain <=0 ? "not found": String.format("%s,%s,%s",globalStart,globalEnd,globalGain));
+        System.out.println( String.format("%s,%s,%s",globalStart,globalEnd,globalGain));
 
     }
 
 
-
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args){
-        new TrendBuyAndSell().solution(getInputData());
+        new MaxSumSubSequnce().solution(getInputData());
     }
 }
