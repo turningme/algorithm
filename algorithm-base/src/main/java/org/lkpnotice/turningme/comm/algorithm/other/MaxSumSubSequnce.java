@@ -12,6 +12,8 @@ package org.lkpnotice.turningme.comm.algorithm.other;
  *
  *  动态规划
  *  最优子结构
+ *
+ *
  */
 public class MaxSumSubSequnce {
     /**
