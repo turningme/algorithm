@@ -15,6 +15,9 @@ package org.lkpnotice.turningme.comm.algorithm.joffer;
  * 可以认为是与二分法殊途同归，都是利用一定的约束顺序，减枝，跳过不需要检测的空间
  *
  *
+ * 还一个方法是每一个 L 型都是一个有序的数组，从搜索空间的角度来考虑
+ *
+ *
  *
  */
 public class No01SortedMatrixFindNumber {
@@ -67,6 +70,29 @@ public class No01SortedMatrixFindNumber {
     }
 
 
+    /**
+     * search the space ,cut the branch one line or column start from the left-bottom or right-top point
+     * @param input
+     * @param size
+     * @param key
+     * @return
+     */
+    String sulutionLShapeSearch(int[][] input,int size ,int key){
+        int startX =0;
+        int startY = size-1;
+        while(startX>=0 && startX<size && startY >=0 && startY <size){
+            int temp = input[startX][startY];
+            if (temp == key){
+                return String.format("(%s,%s)",startX,startY);
+            }else if (temp >key){
+                startY -= 1;
+            }else {
+                startX +=1;
+            }
+        }
+
+        return String.format("Nod found ");
+    }
 
 
 
@@ -74,6 +100,6 @@ public class No01SortedMatrixFindNumber {
 
 
     public static  void main(String[] args){
-        System.out.println(new No01SortedMatrixFindNumber().sulutionLinear(getInputData(),4,3));
+        System.out.println(new No01SortedMatrixFindNumber().sulutionLShapeSearch(getInputData(),4,3));
     }
 }
