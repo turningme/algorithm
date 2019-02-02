@@ -12,6 +12,8 @@ import java.util.Arrays;
  * Solution:
  * 存储空间就是一个数组，每一次先找到偶数第一个，然后找到它后边的第一个基数，直到寻找的奇数超出边界
  * 增加两个线性表，扫一次数组，分别分拣出奇数和偶数到两个队列，然后在放回去
+ * 归并排序
+ * 快排要变种
  *
  *
  *
@@ -90,6 +92,17 @@ public class No13ArrayAdjustOddAndEven {
             stringBuffer.append(input[i]).append("  ");
         }
         return  stringBuffer.toString();
+    }
+
+
+
+    void mergeSort(int[] input,int start,int end){
+        if (start ==end){
+            return ;
+        }
+
+
+
     }
 
 
