@@ -11,7 +11,8 @@
   <packaging>pom</packaging>
 
   <properties>
-
+    <zstd-version>1.4.5-1</zstd-version>
+    <slf4j-api-version>1.7.25</slf4j-api-version>
   </properties>
 
   <dependencyManagement>
@@ -35,6 +36,18 @@
         <version>2.6.2</version>
       </dependency>
 
+      <!-- zstd 依赖 -->
+      <dependency>
+        <groupId>com.github.luben</groupId>
+        <artifactId>zstd-jni</artifactId>
+        <version>${zstd-version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>${slf4j-api-version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
