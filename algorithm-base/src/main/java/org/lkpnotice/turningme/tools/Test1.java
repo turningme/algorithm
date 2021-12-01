@@ -2,6 +2,7 @@ package org.lkpnotice.turningme.tools;
 
 import com.github.luben.zstd.ZstdInputStream;
 import com.github.luben.zstd.ZstdOutputStream;
+import org.lkpnotice.turningme.utils.Utils;
 
 import java.io.*;
 import java.util.Arrays;
@@ -12,10 +13,10 @@ public class Test1 {
     static final Logger logger = Logger.getLogger(Test1.class.getName());
 
     public static void main(String[] args) {
-        testDecompressOneFolderItems();
+//        testDecompressOneFolderItems();
 
 
-        /*testGzipOneFolderItems();*/
+        testGzipOneFolderItems();
         /*testZstdCompress4NormalFile();
         testZstdDecompress4NormalFile()*/;
     }
@@ -62,6 +63,9 @@ public class Test1 {
         byte[] buf = new byte[1024 * 8];
         int bytesRead = -1;
         while ((bytesRead = zis.read(buf)) > 0) {
+    /*        for (int i=0; i< bytesRead ;i ++){
+                buf = Utils.decrypt(buf);
+            }*/
             bos.write(buf, 0, bytesRead);
         }
 
@@ -110,6 +114,9 @@ public class Test1 {
         byte[] buf = new byte[1024 * 8];
         int bytesRead = -1;
         while ((bytesRead = bis.read(buf)) > 0) {
+        /*    for (int i=0; i< bytesRead ;i ++){
+                buf = Utils.encrypt(buf);
+            }*/
             zos.write(buf, 0, bytesRead);
         }
 
@@ -171,16 +178,25 @@ public class Test1 {
             System.out.println("process file " + f1.getAbsolutePath());
             if (f1.isFile()){
                 String fname =f1.getName();
+//                fname = new String(Utils.encrypt(fname.getBytes()));
                 String zstdFileOutputDir = outputBaseDir + "/" + fname;
                 logger.info("process fname source " + fname);
                 logger.info("output source " + zstdFileOutputDir);
 
-                try {
-                    compress(f1.getAbsolutePath(), zstdFileOutputDir);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    System.out.println(e);
-                }
+                Runnable runnable = new Runnable(){
+                    @Override
+                    public void run() {
+                        try {
+                            compress(f1.getAbsolutePath(), zstdFileOutputDir);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            System.out.println(e);
+                        }
+                    }
+                };
+
+                new Thread(runnable, "name : " + f1.getName()).start();
+
             }
 
             return 1;
@@ -202,6 +218,7 @@ public class Test1 {
             System.out.println("process file " + f1.getAbsolutePath());
             if (f1.isFile()){
                 String fname =f1.getName();
+                fname = new String(Utils.decrypt(fname.getBytes()));
                 String zstdFileOutputDir = outputBaseDir + "/" + fname;
                 logger.info("process fname source " + fname);
                 logger.info("output source " + zstdFileOutputDir);
