@@ -3,7 +3,7 @@ package org.lkpnotice.turningme.tools;
 import net.schmizz.sshj.SSHClient;
 import net.schmizz.sshj.transport.verification.PromiscuousVerifier;
 import net.schmizz.sshj.xfer.FileSystemFile;
-import org.lkpnotice.turningme.utils.Utils;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -38,7 +38,8 @@ public class Test2 {
 
     public static void tototo(String from) throws IOException {
 //        String host = "8.210.239.89";
-        String host = "192.168.10.103";
+//        String host = "192.168.10.103";
+        String host = "192.168.10.104";
         SSHClient ssh = new SSHClient();
         ssh.loadKnownHosts();
         ssh.addHostKeyVerifier(new PromiscuousVerifier());
@@ -46,7 +47,7 @@ public class Test2 {
         try {
 //            ssh.authPublickey("root");
 //            ssh.authPublickey(System.getProperty("user.name"));
-            ssh.authPassword("turning","");
+            ssh.authPassword("","");
 
             // Present here to demo algorithm renegotiation - could have just put this before connect()
             // Make sure JZlib is in classpath for this to work
@@ -54,7 +55,7 @@ public class Test2 {
 
 //            final String src = System.getProperty("user.home") + File.separator + "test_file";
             String src = from;
-            ssh.newSCPFileTransfer().upload(new FileSystemFile(src), "/Users/turning/tto");
+            ssh.newSCPFileTransfer().upload(new FileSystemFile(src), "/Users/lkpnotice/tto");
         } finally {
             ssh.disconnect();
         }
